@@ -6,16 +6,8 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
 
+
 <h:body>
-Value ${testController.data}
-Employee => ${testController.employee}
-	<h:form>
-		<h:panelGrid columns="2">
-			<h:outputLabel value="Id : " />
-			<h:inputText value="#{testController.employee.id}" />
-		</h:panelGrid>
-		<h:commandButton value="Find by ID"
-			action="#{testController.findEmployee}" />
-	</h:form>
+  Employee is :  ${testController.employee}
 </h:body>
 </html>

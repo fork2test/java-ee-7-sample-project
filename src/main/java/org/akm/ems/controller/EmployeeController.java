@@ -31,7 +31,7 @@ public class EmployeeController extends Application {
 	
 	@GET
     @Path("{id}")
-    public Employee getPerson(@PathParam("id") Long id){
+    public Employee findEmployee(@PathParam("id") Long id){
         return employeeService.findOne(id);
     }
 }
