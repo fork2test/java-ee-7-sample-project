@@ -5,6 +5,7 @@ import java.util.Set;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
+import org.akm.ems.controller.CustomerController;
 import org.akm.ems.controller.EmployeeController;
 
 /**
@@ -33,6 +34,7 @@ public class AppConfig extends Application {
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(EmployeeController.class);
+        resources.add(CustomerController.class);
     }
 
 }

@@ -8,12 +8,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
+import com.wordnik.swagger.annotations.ApiModel;
+import com.wordnik.swagger.annotations.ApiModelProperty;
+
 /**
  * 
  * @author anish
  *
  */
 @Entity
+@ApiModel(value = "Employee", description = "employee domain object")
 public class Employee implements Serializable {
 
 	private static final long serialVersionUID = -2449687964123610862L;
@@ -27,6 +31,7 @@ public class Employee implements Serializable {
 	
 	private String address;
 
+	@ApiModelProperty(value = "Unique identifier of an employee")
 	public Long getId() {
 		return id;
 	}
@@ -35,6 +40,7 @@ public class Employee implements Serializable {
 		this.id = id;
 	}
 
+	@ApiModelProperty(value = "Name of an employee")
 	public String getName() {
 		return name;
 	}
@@ -43,6 +49,8 @@ public class Employee implements Serializable {
 		this.name = name;
 	}
 
+
+	@ApiModelProperty(value = "current address of an employee")
 	public String getAddress() {
 		return address;
 	}

@@ -16,6 +16,7 @@ import org.akm.ems.domain.Employee;
 
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
+import com.wordnik.swagger.annotations.ApiParam;
 import com.wordnik.swagger.annotations.ApiResponse;
 import com.wordnik.swagger.annotations.ApiResponses;
 
@@ -37,7 +38,7 @@ public class EmployeeController extends Application {
 	@ApiOperation(value = "find employee by id ", notes = "Test notes")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK"),
 	@ApiResponse(code = 500, message = "Internal server error") })
-	public Employee findEmployee(@PathParam("id") Long id) {
+	public Employee findEmployee(@ApiParam(value = "Unique identifier to find employee") @PathParam("id") Long id) {
 		Employee employee = new Employee();
 		employee.setName("Anish");
 		employee.setAddress("Nepal");
