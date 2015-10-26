@@ -5,6 +5,7 @@ import javax.json.Json;
 import javax.json.JsonObject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -15,6 +16,7 @@ import javax.ws.rs.core.Response;
 import org.akm.ems.domain.Employee;
 
 import com.wordnik.swagger.annotations.Api;
+import com.wordnik.swagger.annotations.ApiModel;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 import com.wordnik.swagger.annotations.ApiResponse;
@@ -43,6 +45,21 @@ public class EmployeeController extends Application {
 		employee.setName("Anish");
 		employee.setAddress("Nepal");
 		return employee;
+	}
+	
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@ApiOperation(value = "add/update employee ", notes = "add or update employee")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK"),
+	@ApiResponse(code = 500, message = "Internal server error") })
+	public Employee save(Employee employee){
+		//Sample code
+		//TODO call repository layer
+		Employee emp = new Employee();
+		emp.setName("anish");
+		emp.setId(100L);
+		emp.setAddress("kalimati");
+		return emp;
 	}
 
 	@GET
