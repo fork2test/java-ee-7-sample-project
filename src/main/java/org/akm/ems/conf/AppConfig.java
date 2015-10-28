@@ -8,6 +8,10 @@ import javax.ws.rs.core.Application;
 import org.akm.ems.controller.CustomerController;
 import org.akm.ems.controller.EmployeeController;
 
+import io.swagger.jaxrs.config.BeanConfig;
+import io.swagger.jaxrs.listing.ApiListingResource;
+import io.swagger.jaxrs.listing.SwaggerSerializers;
+
 /**
  * 
  * @author anish
@@ -16,13 +20,22 @@ import org.akm.ems.controller.EmployeeController;
 @ApplicationPath("app")
 public class AppConfig extends Application {
 
+	
+	public AppConfig() {
+        BeanConfig beanConfig = new BeanConfig();
+        beanConfig.setVersion("1.0.2");
+        beanConfig.setSchemes(new String[]{"http"});
+        beanConfig.setHost("localhost:8080");
+        beanConfig.setBasePath("/java-ee-7-sample-project/app");
+        beanConfig.setResourcePackage("org.akm.ems");
+        beanConfig.setScan(true);
+    }
+	
     @Override
     public Set<Class<?>> getClasses() {
         Set<Class<?>> resources = new java.util.HashSet<>();
-        resources.add(com.wordnik.swagger.jaxrs.listing.ApiListingResource.class);
-        resources.add(com.wordnik.swagger.jaxrs.listing.ApiDeclarationProvider.class);
-        resources.add(com.wordnik.swagger.jaxrs.listing.ApiListingResourceJSON.class);
-        resources.add(com.wordnik.swagger.jaxrs.listing.ResourceListingProvider.class);
+        resources.add(ApiListingResource.class);
+        resources.add(SwaggerSerializers.class);
         addRestResourceClasses(resources);
         return resources;
     }

@@ -10,11 +10,12 @@ import javax.ws.rs.core.MediaType;
 
 import org.akm.ems.domain.Customer;
 
-import com.wordnik.swagger.annotations.Api;
-import com.wordnik.swagger.annotations.ApiOperation;
-import com.wordnik.swagger.annotations.ApiParam;
-import com.wordnik.swagger.annotations.ApiResponse;
-import com.wordnik.swagger.annotations.ApiResponses;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 
 @Stateless
 @Path("customer")
@@ -28,8 +29,7 @@ public class CustomerController {
 	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@ApiOperation(value = "find customer by id ", notes = "Test notes")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK"),
-	@ApiResponse(code = 500, message = "Internal server error") })
+	@ApiResponses(value = {@ApiResponse(code = 200, message = "OK"),@ApiResponse(code = 500, message = "Internal server error")})
 	public Customer findCustomer(@ApiParam(value = "Unique identifier to find customer") @PathParam("id") Long id) {
 		Customer customer = new Customer();
 		customer.setName("Anish");

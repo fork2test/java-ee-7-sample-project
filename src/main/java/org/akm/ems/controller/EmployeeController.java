@@ -15,12 +15,11 @@ import javax.ws.rs.core.Response;
 
 import org.akm.ems.domain.Employee;
 
-import com.wordnik.swagger.annotations.Api;
-import com.wordnik.swagger.annotations.ApiModel;
-import com.wordnik.swagger.annotations.ApiOperation;
-import com.wordnik.swagger.annotations.ApiParam;
-import com.wordnik.swagger.annotations.ApiResponse;
-import com.wordnik.swagger.annotations.ApiResponses;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 /**
  * 
@@ -38,8 +37,7 @@ public class EmployeeController extends Application {
 	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@ApiOperation(value = "find employee by id ", notes = "Test notes")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK"),
-	@ApiResponse(code = 500, message = "Internal server error") })
+	@ApiResponses(value = {@ApiResponse(code = 200, message = "OK"),@ApiResponse(code = 500, message = "Internal server error")})
 	public Employee findEmployee(@ApiParam(value = "Unique identifier to find employee") @PathParam("id") Long id) {
 		Employee employee = new Employee();
 		employee.setName("Anish");
@@ -50,8 +48,7 @@ public class EmployeeController extends Application {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@ApiOperation(value = "add/update employee ", notes = "add or update employee")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK"),
-	@ApiResponse(code = 500, message = "Internal server error") })
+	@ApiResponses(value = {@ApiResponse(code = 200, message = "OK"),@ApiResponse(code = 500, message = "Internal server error")})
 	public Employee save(Employee employee){
 		//Sample code
 		//TODO call repository layer
@@ -65,8 +62,7 @@ public class EmployeeController extends Application {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@ApiOperation(value = "Say Hello World with swagger and java EE 7", notes = "Test notes")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK"),
-	@ApiResponse(code = 500, message = "Internal server error") })
+	@ApiResponses(value = {@ApiResponse(code = 200, message = "OK"),@ApiResponse(code = 500, message = "Internal server error")})
 	public Response sayHello() {
 		JsonObject value = Json.createObjectBuilder().add("firstName", "anish").add("lastName", "manandhar")
 				.add("message", "Hi This is sample for swagger integration with java EE 7").build();
