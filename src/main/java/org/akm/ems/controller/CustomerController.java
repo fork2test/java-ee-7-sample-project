@@ -4,7 +4,6 @@ import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -12,11 +11,14 @@ import org.akm.ems.domain.Customer;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-
+/**
+ * 
+ * @author anish
+ *
+ */
 @Stateless
 @Path("customer")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -26,11 +28,10 @@ public class CustomerController {
 
 	
 	@GET
-	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	@ApiOperation(value = "find customer by id ", notes = "Test notes")
+	@ApiOperation(value = "get sample customer data", notes = "Test notes")
 	@ApiResponses(value = {@ApiResponse(code = 200, message = "OK"),@ApiResponse(code = 500, message = "Internal server error")})
-	public Customer findCustomer(@ApiParam(value = "Unique identifier to find customer") @PathParam("id") Long id) {
+	public Customer getSampleCustomer() {
 		Customer customer = new Customer();
 		customer.setName("Anish");
 		customer.setAddress("Nepal");

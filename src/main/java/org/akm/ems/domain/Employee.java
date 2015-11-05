@@ -22,6 +22,15 @@ public class Employee implements Serializable {
 
 	private static final long serialVersionUID = -2449687964123610862L;
 	
+	public Employee(){}
+	
+	public Employee(Long id, String name, String address) {
+		super();
+		this.setId(id);
+		this.setName(name);
+		this.setAddress(address);
+	}
+	
 	@Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id")
     @SequenceGenerator(name = "id", sequenceName = "id")
@@ -50,7 +59,7 @@ public class Employee implements Serializable {
 	}
 
 
-	@ApiModelProperty(value = "current address of an employee")
+	@ApiModelProperty(value = "current address of an employee", notes = "please donot provide special characters")
 	public String getAddress() {
 		return address;
 	}

@@ -1,6 +1,10 @@
 package org.akm.ems.controller;
 
+import java.util.List;
+
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.ws.rs.Consumes;
@@ -14,6 +18,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.akm.ems.domain.Employee;
+import org.akm.ems.service.EmployeeService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -33,16 +38,16 @@ import io.swagger.annotations.ApiResponses;
 @Api(value = "/employee", description = "Employee rest services")
 public class EmployeeController extends Application {
 
+	@Inject
+	private EmployeeService employeeService;
+	
 	@GET
 	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@ApiOperation(value = "find employee by id ", notes = "Test notes")
 	@ApiResponses(value = {@ApiResponse(code = 200, message = "OK"),@ApiResponse(code = 500, message = "Internal server error")})
 	public Employee findEmployee(@ApiParam(value = "Unique identifier to find employee") @PathParam("id") Long id) {
-		Employee employee = new Employee();
-		employee.setName("Anish");
-		employee.setAddress("Nepal");
-		return employee;
+		return this.employeeService.findOne(id);
 	}
 	
 	@POST
@@ -50,14 +55,17 @@ public class EmployeeController extends Application {
 	@ApiOperation(value = "add/update employee ", notes = "add or update employee")
 	@ApiResponses(value = {@ApiResponse(code = 200, message = "OK"),@ApiResponse(code = 500, message = "Internal server error")})
 	public Employee save(Employee employee){
-		//Sample code
-		//TODO call repository layer
-		Employee emp = new Employee();
-		emp.setName("anish");
-		emp.setId(100L);
-		emp.setAddress("kalimati");
-		return emp;
+		return this.employeeService.save(employee);
 	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@ApiOperation(value = "find all employees", notes = "list of all available employees")
+	@ApiResponses(value = {@ApiResponse(code = 200, message = "OK"),@ApiResponse(code = 500, message = "Internal server error")})
+	public List<Employee> findAll(){
+		return this.employeeService.findAll();
+	}
+	
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
