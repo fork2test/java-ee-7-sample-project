@@ -27,6 +27,8 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.Authorization;
+import io.swagger.annotations.AuthorizationScope;
 
 /**
  * 
@@ -52,13 +54,14 @@ public class EmployeeController extends Application {
 						   @ApiResponse(code = 404, message = "No employee found with given id")
 	})
 	@ApiParam(value = "Unique identifier to find employee")
+	@Authorization(scopes = @AuthorizationScope(description = "test", scope = "test"), value = "test")
 	public Employee findEmployee(@PathParam("id") Long id) {
 		return this.employeeService.findOne(id);
 	}
 	
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	@ApiOperation(value = "add/update employee ", notes = "add or update employee")
+	@ApiOperation(value = "add/update employee ", notes = "add or update employee", authorizations = { @Authorization(value="private") })
 	@ApiResponses(value = {@ApiResponse(code = 200, message = "OK"),@ApiResponse(code = 500, message = "Internal server error")})
 	@Path("/save")
 	public Employee save(Employee employee){
@@ -92,10 +95,10 @@ public class EmployeeController extends Application {
 	@ApiResponses(value = {@ApiResponse(code = 200, message = "OK"),
 							@ApiResponse(code = 500, message = "Internal server error"),
 							@ApiResponse(code= 404, message = "No employee found with given user name and address")})
-	@ApiImplicitParams({
+	/*@ApiImplicitParams({
 	    @ApiImplicitParam(name = "username", value = "User name", required = false, dataType = "String", paramType = "query"),
 	    @ApiImplicitParam(name = "address", value = "Address", required = false, dataType = "String", paramType = "query")
-	  })
+	  })*/
 	public List<Employee> findByParams(@QueryParam("username") String name,  @QueryParam("address") String address) {
 		return this.employeeService.findAll();
 	}
