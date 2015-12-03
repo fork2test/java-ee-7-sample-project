@@ -39,8 +39,10 @@ public class Employee implements Serializable {
 	private String name;
 	
 	private String address;
+	
+	private String status;
 
-	@ApiModelProperty(value = "Unique identifier of an employee")
+	@ApiModelProperty(value = "Unique identifier of an employee", required = true)
 	public Long getId() {
 		return id;
 	}
@@ -49,7 +51,7 @@ public class Employee implements Serializable {
 		this.id = id;
 	}
 
-	@ApiModelProperty(value = "Name of an employee")
+	@ApiModelProperty(value = "Name of an employee", required = true, example = "anish krishna manandhar", notes = "Please dont input special characters")
 	public String getName() {
 		return name;
 	}
@@ -66,6 +68,15 @@ public class Employee implements Serializable {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	
+	@ApiModelProperty(value = "status of employee", allowableValues = "pending,rejected,approved,enabled,disabled")
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	@Override

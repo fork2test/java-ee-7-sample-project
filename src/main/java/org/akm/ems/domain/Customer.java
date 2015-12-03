@@ -19,6 +19,7 @@ public class Customer implements Serializable {
 	private String name;
 	private String address;
 	private String contactNumber;
+	private String status;
 
 	@ApiModelProperty(value = "Unique identifier of an customer")
 	public Long getId() {
@@ -55,5 +56,16 @@ public class Customer implements Serializable {
 	public void setContactNumber(String contactNumber) {
 		this.contactNumber = contactNumber;
 	}
+
+	@ApiModelProperty(value = "status of customer", allowableValues = "pending, rejected, enabled, disabled")
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
+	
 
 }

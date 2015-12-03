@@ -23,13 +23,13 @@ import io.swagger.annotations.ApiResponses;
 @Path("customer")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-@Api(value = "/customer", description = "Customer rest services")
+@Api(value = "/customer")
 public class CustomerController {
 
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	@ApiOperation(value = "get sample customer data", notes = "Test notes")
+	@ApiOperation(value = "get sample customer data", notes = "Test notes", response = Customer.class)
 	@ApiResponses(value = {@ApiResponse(code = 200, message = "OK"),@ApiResponse(code = 500, message = "Internal server error")})
 	public Customer getSampleCustomer() {
 		Customer customer = new Customer();
