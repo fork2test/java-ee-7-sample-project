@@ -21,14 +21,11 @@ import org.akm.ems.domain.Employee;
 import org.akm.ems.service.EmployeeService;
 
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.Authorization;
-import io.swagger.annotations.AuthorizationScope;
 
 /**
  * 
@@ -54,7 +51,6 @@ public class EmployeeController extends Application {
 						   @ApiResponse(code = 404, message = "No employee found with given id")
 	})
 	@ApiParam(value = "Unique identifier to find employee")
-	@Authorization(scopes = @AuthorizationScope(description = "test", scope = "test"), value = "test")
 	public Employee findEmployee(@PathParam("id") Long id) {
 		return this.employeeService.findOne(id);
 	}

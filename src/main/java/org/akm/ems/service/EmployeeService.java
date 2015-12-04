@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 
-import org.akm.ems.api.GenericApi;
 import org.akm.ems.domain.Employee;
 
 /**
@@ -19,10 +18,11 @@ public class EmployeeService {
 	private static List<Employee> employees = new ArrayList<Employee>();
 	
 	static{
-		employees.add(new Employee(1l,"Anish krishna Manandhar", "Kathmandu,Nepal"));
-		employees.add(new Employee(2l,"Kailash Raj Bijaynanda", "Kathmandu,Nepal"));
-		employees.add(new Employee(3l,"Sudhir Shrestha", "Lalitpur,Nepal"));
-		employees.add(new Employee(4l,"Ujwal Dhamala", "Bhaktapur,Nepal"));
+		employees.add(new Employee(1l,"Anish krishna Manandhar", "Kathmandu,Nepal", "pending", true));
+		employees.add(new Employee(2l,"Kailash Raj Bijaynanda", "Kathmandu,Nepal","approved", true));
+		employees.add(new Employee(3l,"Bhuwan Gautam", "Kathmandu,Nepal","approved", true));
+		employees.add(new Employee(4l,"Sudhir Shakya", "Lalitpur,Nepal", "approved", true));
+		employees.add(new Employee(5l,"Ujwal Dhamala", "Bhaktapur,Nepal", "approved", true));
 	}
 	
 	public Employee save(Employee t) {

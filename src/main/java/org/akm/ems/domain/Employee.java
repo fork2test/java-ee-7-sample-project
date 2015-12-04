@@ -24,11 +24,13 @@ public class Employee implements Serializable {
 	
 	public Employee(){}
 	
-	public Employee(Long id, String name, String address) {
+	public Employee(Long id, String name, String address, String status, boolean isActive) {
 		super();
 		this.setId(id);
 		this.setName(name);
 		this.setAddress(address);
+		this.setStatus(status);
+		this.setActive(isActive);
 	}
 	
 	@Id
@@ -41,8 +43,10 @@ public class Employee implements Serializable {
 	private String address;
 	
 	private String status;
+	
+	private boolean isActive;
 
-	@ApiModelProperty(value = "Unique identifier of an employee", required = true)
+	@ApiModelProperty(value = "Unique identifier of an employee", required = true, example = "5")
 	public Long getId() {
 		return id;
 	}
@@ -61,7 +65,7 @@ public class Employee implements Serializable {
 	}
 
 
-	@ApiModelProperty(value = "current address of an employee", notes = "please donot provide special characters")
+	@ApiModelProperty(value = "current address of an employee", notes = "please donot provide special characters", example = "kathmandu")
 	public String getAddress() {
 		return address;
 	}
@@ -70,13 +74,22 @@ public class Employee implements Serializable {
 		this.address = address;
 	}
 	
-	@ApiModelProperty(value = "status of employee", allowableValues = "pending,rejected,approved,enabled,disabled")
+	@ApiModelProperty(value = "status of employee", allowableValues = "pending,rejected,approved,enabled,disabled", example = "approved")
 	public String getStatus() {
 		return status;
 	}
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	
+	@ApiModelProperty(value = "states whether user is active or not", allowableValues ="true,false", dataType = "boolean", example = "true")
+	public boolean isActive() {
+		return isActive;
+	}
+
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
 	}
 
 	@Override
